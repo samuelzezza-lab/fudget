@@ -359,7 +359,7 @@ function renderFoodCostRows(){
  root.innerHTML=valid.map(x=>{const key=x.name.toLowerCase()+"|"+x.unit;const p=ingredientPrices[key]||{};return '<div class="food-cost-row"><div class="food-cost-name">'+esc(x.name)+'<small>Usati: '+esc(x.qty)+' '+esc(x.unit)+'</small></div><input type="number" min="0" step="0.01" placeholder="€ confezione" aria-label="Prezzo confezione di '+esc(x.name)+' in euro" value="'+(p.price??"")+'" oninput="setIngredientPrice('+JSON.stringify(key)+',\'price\',this.value)"><input type="number" min="0.01" step="any" placeholder="'+(x.unit==="g"?"g confezione":x.unit==="ml"?"ml confezione":"pz confezione")+'" aria-label="Quantità confezione di '+esc(x.name)+'" value="'+(p.pack??"")+'" oninput="setIngredientPrice('+JSON.stringify(key)+',\'pack\',this.value)"><output id="food-line-'+x.index+'">'+(p.price>0&&p.pack>0?euro(p.price*x.qty/p.pack):"—")+'</output></div>';}).join("");
  updateDishCost();
 }
-function setIngredientPrice(key,field,value){if(!ingredientPrices[key])ingredientPrices[key]={};ingredientPrices[key][field]=Number(value);renderFoodCostRows();}
+function setIngredientPrice(key,field,value){if(!ingredientPrices[key])ingredientPrices[key]={};ingredientPrices[key][field]=Number(value);const x=ingredients.find(v=>String(v.name||"").trim().toLowerCase()+"|"+v.unit===key);const p=ingredientPrices[key];if(x){const i=ingredients.indexOf(x),out=document.getElementById("food-line-"+i);if(out)out.textContent=p.price>0&&p.pack>0?euro(p.price*Number(x.qty)/p.pack):"—";}updateDishCost();}
 function updateEnergyCost(){
  const method=document.getElementById("cooking-method").value;
  const labels=method==="gas"?["Prezzo gas (€/Smc)","Consumo (Smc/ora)"]:["Prezzo elettricità (€/kWh)","Potenza media (kW)"];
