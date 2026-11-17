@@ -120,6 +120,69 @@ body{background:radial-gradient(ellipse at 90% 0%,#e4edff 0,transparent 38%),var
 @media(max-width:390px){.ingredient-head,.ingredient-row{grid-template-columns:minmax(0,1fr) 56px 68px 30px;gap:4px}.ingredient-row input,.ingredient-row select{font-size:10px;padding:0 5px}.remove{width:30px;height:32px}.brandname{font-size:20px}.credits{font-size:9px;padding:7px 8px}}
 @media print{.topbar,.bottomnav,.builder,.sidecol,.result-actions{display:none!important}body{padding:0;background:#fff}.shell{width:100%}.results{display:block!important;border:0;box-shadow:none}}
 
+
+/* Fudgett — palette blu moderna, applicata in modo uniforme */
+:root{
+ --ink:#14233b;--muted:#687991;--line:#dce6f2;--paper:#f3f7fc;--white:#fff;
+ --green:#2563eb;--green2:#e8f1ff;--lime:#dbeafe;--orange:#f59e0b;
+ --shadow:0 14px 38px rgba(22,55,105,.08);--radius:24px
+}
+body{background:radial-gradient(ellipse at 92% 0%,#e2edff 0,transparent 38%),var(--paper);color:var(--ink)}
+.topbar{background:rgba(248,251,255,.92);border-bottom-color:#dce6f2}
+.logo{background:linear-gradient(145deg,#3b82f6,#1d4ed8);color:#fff;box-shadow:0 8px 18px #2563eb30}
+.brandname{color:#14233b}
+.brandtag{color:#71829a}
+.credits{border-color:#d7e5fb;background:#edf4ff;color:#2458b7}
+.credits i{color:#e5a12b}
+.hero-copy .eyebrow,.eyebrow{color:#2563eb}
+.eyebrow:before{background:#60a5fa}
+.hero h1 span{color:#2563eb}
+.hero p{color:#64748b}
+.hero-art{background:linear-gradient(135deg,#e6f0ff,#cfe2ff)}
+.hero-art:before{background:#c6dcff}.hero-art:after{background:#dceaff}
+.plate{box-shadow:0 24px 55px #1e40af20}
+.float-note{border-color:#e0eaff;box-shadow:0 12px 30px #1e40af12}
+.ad-slot{border-color:#d8e4f3;background:#ffffffa6;color:#8b9bb1}
+.locationbar,.card{border-color:#dce6f2;box-shadow:0 10px 32px rgba(30,64,110,.055)}
+.locicon,.step{background:#e8f1ff;color:#2563eb}
+.locfield label,.sectionhead p,.side-desc{color:#71829a}
+.gpsbtn{background:#edf4ff;color:#2458b7}
+.input,.ingredient-row input,.ingredient-row select{background:#fbfdff;border-color:#dce6f2;color:#14233b}
+.input:focus,.ingredient-row input:focus,.ingredient-row select:focus{border-color:#60a5fa;box-shadow:0 0 0 3px #2563eb15}
+.fieldlabel{color:#526783}
+.addrow{background:#f1f6ff;border-color:#b9d1f5;color:#2458b7}
+.addrow:hover{background:#e5efff}
+.primary{background:linear-gradient(135deg,#3b82f6,#1d4ed8);box-shadow:0 8px 18px #2563eb2b}
+.primary:hover{background:#1e40af}
+.secondary{border-color:#d7e5f5;color:#2458b7}
+.secondary:hover{background:#f1f6ff}
+.pantry-chip{border-color:#dce6f2;background:#fbfdff;color:#61748f}
+.pantry-chip.active{background:#e8f1ff;border-color:#bfd5fa;color:#2458b7}
+.pantry-chip input{accent-color:#2563eb}
+.mini-stat{background:#f1f6fc}
+.result-item{border-color:#e4ebf5}
+.result-item .check{background:#e8f1ff;color:#2563eb}
+.status{color:#94621b;background:#fff6e5}
+.energy{background:#f3f7fc;border-color:#e1eaf5}
+.energy-cost{color:#2563eb}
+.advice{background:#edf4ff;border-color:#d9e7fb}
+.advice i{color:#2563eb}
+.advice p{color:#64748b}
+.bottomnav{border-top-color:#dce6f2}
+.navbtn.active{color:#2563eb;background:#eaf2ff}
+.navbtn{color:#8292a8}
+.toast{background:#14233b}
+.modalback{background:#10213bb0}
+.cookie-banner{background:#14233b;border-color:#304c75;box-shadow:0 18px 60px #10213b45}
+.cookie-banner .accept{background:#3b82f6;color:#fff;border-color:#3b82f6}
+.cookie-banner .reject{background:#fff;color:#14233b;border-color:#fff}
+.cookie-panel{color:#14233b}
+@media(max-width:760px){
+ .topbar{background:rgba(248,251,255,.96)}
+ .hero-art{background:linear-gradient(135deg,#e6f0ff,#cfe2ff)}
+ .navbtn.active{background:#eaf2ff}
+}
+
 </style>
 </head>
 <body>
