@@ -1,596 +1,102 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PiattoConto - La Spesa e il Piatto al Centesimo</title>
-    <!-- Tailwind CSS per un design super pulito, moderno e responsive -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome per le icone della barra in basso e dei comandi -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: { 50: '#ecfdf5', 100: '#d1fae5', 500: '#10b981', 600: '#059669', 700: '#047857' }
-                    }
-                }
-            }
-        }
-    </script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f7f8f5">
+<meta name="description" content="Crea la tua ricetta, organizza la dispensa e prepara una spesa intelligente.">
+<title>PiattoConto — La tua spesa, senza sorprese</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{--ink:#17251f;--muted:#77827b;--line:#e8ece7;--paper:#f7f8f5;--white:#fff;--green:#197a50;--green2:#e8f4ec;--lime:#d8f36a;--orange:#f2a65a;--shadow:0 12px 36px rgba(25,45,34,.07);--radius:22px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:"DM Sans",sans-serif;padding-bottom:92px}button,input,select{font:inherit}button{cursor:pointer}.shell{width:min(1120px,100% - 36px);margin:auto}.topbar{position:sticky;top:0;z-index:30;background:rgba(247,248,245,.9);backdrop-filter:blur(18px);border-bottom:1px solid rgba(232,236,231,.85)}.topinner{height:76px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:inherit}.logo{width:42px;height:42px;border-radius:15px;background:var(--green);color:#fff;display:grid;place-items:center;font-size:18px;box-shadow:0 7px 16px #197a5030}.brandname{font:800 20px Manrope,sans-serif;letter-spacing:-.8px}.brandtag{font-size:11px;color:var(--muted);margin-top:1px}.topright{display:flex;align-items:center;gap:10px}.credits{border:1px solid #dce9df;background:#fff;border-radius:99px;padding:9px 13px;font-size:12px;font-weight:700;color:var(--green);white-space:nowrap}.credits i{color:#d99c35;margin-right:5px}.profile{width:38px;height:38px;border-radius:50%;background:#e9eee8;color:var(--green);display:grid;place-items:center}
+main{padding:30px 0 36px}.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:26px;align-items:stretch;margin-bottom:24px}.hero-copy{padding:27px 4px 24px}.eyebrow{display:inline-flex;align-items:center;gap:7px;color:var(--green);font-size:11px;font-weight:800;letter-spacing:1.1px;text-transform:uppercase}.eyebrow:before{content:"";width:18px;height:2px;background:var(--green);border-radius:4px}.hero h1{font:800 clamp(34px,5vw,57px)/1.05 Manrope,sans-serif;letter-spacing:-2.7px;margin:17px 0 14px;max-width:590px}.hero h1 span{color:var(--green)}.hero p{color:#6d7971;font-size:15px;line-height:1.65;max-width:520px;margin:0}.hero-art{background:#e8efe6;border-radius:28px;min-height:230px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}.hero-art:before,.hero-art:after{content:"";position:absolute;border-radius:50%;background:#d8e6d5}.hero-art:before{width:230px;height:230px;right:-42px;top:-95px}.hero-art:after{width:170px;height:170px;left:-50px;bottom:-90px}.plate{position:relative;z-index:1;width:190px;height:190px;border-radius:50%;background:#fff;box-shadow:0 22px 50px #29483220;display:grid;place-items:center;font-size:94px;transform:rotate(-8deg)}.float-note{position:absolute;z-index:2;background:#fff;border:1px solid #e5ebe2;border-radius:15px;padding:11px 14px;box-shadow:var(--shadow);font-size:11px;font-weight:700}.float-note small{display:block;color:var(--muted);font-weight:500;margin-top:3px}.note-a{left:18px;top:25px}.note-b{right:16px;bottom:23px}
+.ad-slot{border:1px dashed #d9dfd8;background:rgba(255,255,255,.55);border-radius:14px;min-height:64px;display:flex;align-items:center;justify-content:center;text-align:center;color:#9aa49c;font-size:10px;letter-spacing:.7px;text-transform:uppercase;margin:0 0 22px;gap:8px}.ad-slot i{font-size:12px}.ad-slot span{display:block;font-size:9px;letter-spacing:0;text-transform:none;margin-top:3px;color:#b1b9b2}.ad-slot.compact{min-height:52px;margin:20px 0 0}
+.locationbar{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:10px 13px;margin-bottom:22px;box-shadow:0 3px 14px #17251f05}.locicon{width:36px;height:36px;background:var(--green2);border-radius:12px;color:var(--green);display:grid;place-items:center;flex:none}.locfield{flex:1;min-width:0}.locfield label{font-size:10px;color:var(--muted);font-weight:700;display:block;margin-bottom:2px}.locfield input{width:100%;border:0;outline:0;color:var(--ink);font-size:13px;background:transparent}.gpsbtn{border:0;background:#f0f5ef;color:var(--green);border-radius:11px;padding:10px 12px;font-size:11px;font-weight:700;white-space:nowrap}.gpsbtn:hover{background:var(--green2)}
+.layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(270px,.65fr);gap:22px;align-items:start}.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}.builder{padding:23px}.sectionhead{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:20px}.sectionhead h2{font:800 19px Manrope,sans-serif;letter-spacing:-.6px;margin:0}.sectionhead p{font-size:12px;color:var(--muted);margin:5px 0 0;line-height:1.5}.step{width:31px;height:31px;border-radius:10px;background:var(--green2);color:var(--green);display:grid;place-items:center;font-weight:800;font-size:12px;flex:none}.fieldlabel{font-size:11px;font-weight:800;color:#526057;display:block;margin:0 0 7px}.input{height:45px;width:100%;border:1px solid #e4e9e3;border-radius:12px;padding:0 13px;outline:0;background:#fbfcfa;color:var(--ink);font-size:13px;transition:.2s}.input:focus{border-color:#78ad8b;box-shadow:0 0 0 3px #197a5012;background:#fff}.dish-field{margin-bottom:22px}.ingredient-head{display:grid;grid-template-columns:minmax(0,1fr) 90px 94px 36px;gap:8px;padding:0 3px 8px;color:#9aa39c;font-size:9px;text-transform:uppercase;letter-spacing:.7px;font-weight:800}.ingredient-row{display:grid;grid-template-columns:minmax(0,1fr) 90px 94px 36px;gap:8px;margin-bottom:9px;align-items:center}.ingredient-row input,.ingredient-row select{height:43px;min-width:0;border:1px solid #e7ebe6;background:#fbfcfa;border-radius:11px;padding:0 10px;font-size:12px;outline:0;color:var(--ink)}.ingredient-row input:focus,.ingredient-row select:focus{border-color:#78ad8b}.remove{height:36px;width:36px;border:0;background:#fff1ef;color:#c76c5b;border-radius:10px}.remove:hover{background:#ffe3df}.addrow{border:1px dashed #b9d4c0;background:#f5faf5;color:var(--green);border-radius:12px;width:100%;padding:12px;font-size:12px;font-weight:800}.addrow:hover{background:var(--green2)}.builderfoot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:19px;padding-top:17px;border-top:1px solid #f0f2ef}.hint{font-size:10px;color:#89938c;line-height:1.4}.primary{border:0;background:var(--green);color:white;border-radius:13px;padding:14px 19px;font-size:12px;font-weight:800;box-shadow:0 7px 16px #197a5028;transition:.2s}.primary:hover{background:#116640;transform:translateY(-1px)}.primary i{margin-left:8px}.sidecol{display:grid;gap:16px}.sidecard{padding:19px}.side-title{font:800 14px Manrope,sans-serif;margin:0}.side-desc{font-size:11px;color:var(--muted);line-height:1.5;margin:6px 0 15px}.pantry-preview{display:flex;flex-wrap:wrap;gap:7px}.pantry-chip{border:1px solid #e5ebe4;border-radius:99px;padding:7px 10px;background:#fbfcfa;color:#657168;font-size:10px;display:flex;align-items:center;gap:6px}.pantry-chip.active{background:var(--green2);border-color:#c9e1cf;color:var(--green);font-weight:700}.pantry-chip input{accent-color:var(--green);margin:0}.pantry-add{display:flex;gap:7px;margin-top:12px}.pantry-add input{height:38px;min-width:0;flex:1;border:1px solid #e5ebe4;border-radius:10px;padding:0 10px;font-size:11px;outline:0}.smallbtn{border:0;background:#edf5ed;color:var(--green);border-radius:10px;padding:0 12px;font-size:11px;font-weight:800}.mini-stats{display:grid;grid-template-columns:1fr 1fr;gap:9px}.mini-stat{background:#f7f9f6;border-radius:13px;padding:12px}.mini-stat strong{display:block;font:800 18px Manrope,sans-serif}.mini-stat span{font-size:9px;color:var(--muted)}
+.results{margin-top:22px;padding:22px;display:none}.results.show{display:block}.result-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}.result-top h2{font:800 19px Manrope,sans-serif;margin:0}.status{font-size:9px;font-weight:800;color:#9a6b25;background:#fff5e5;border-radius:99px;padding:7px 10px}.result-summary{margin:12px 0 16px;color:#68756c;font-size:12px;line-height:1.55}.result-list{display:grid;gap:8px}.result-item{display:flex;align-items:center;gap:10px;border:1px solid #edf0ec;border-radius:12px;padding:11px 12px}.result-item .check{width:24px;height:24px;border-radius:8px;background:#eef5ee;color:var(--green);display:grid;place-items:center;font-size:10px;flex:none}.result-item strong{font-size:12px}.result-item small{display:block;color:var(--muted);font-size:10px;margin-top:2px}.result-item .qty{margin-left:auto;font-size:11px;font-weight:800;color:#526057;white-space:nowrap}.result-actions{display:flex;gap:9px;margin-top:16px}.secondary{border:1px solid #e2e9e1;background:#fff;color:var(--green);border-radius:12px;padding:12px 14px;font-size:11px;font-weight:800}.secondary:hover{background:#f5faf5}.energy{margin-top:17px;background:#f8faf7;border:1px solid #e9eee7;border-radius:14px;padding:14px}.energy-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.energy-head strong{font-size:11px}.energy select{border:1px solid #e2e9e1;border-radius:9px;padding:7px 8px;font-size:10px;background:#fff}.energy-note{font-size:10px;color:#7e8981;line-height:1.5}.energy-cost{font:800 17px Manrope,sans-serif;color:var(--green);margin-top:5px}
+.advice{padding:18px;background:#f0f5eb;border-radius:18px;border:1px solid #e4eddf}.advice i{color:var(--green);font-size:16px}.advice strong{font:800 12px Manrope,sans-serif;display:block;margin:8px 0 4px}.advice p{font-size:10px;color:#748075;line-height:1.5;margin:0}
+.page{display:none}.page.active{display:block}.pagehead{margin:12px 0 20px}.pagehead h1{font:800 29px Manrope,sans-serif;letter-spacing:-1.2px;margin:0}.pagehead p{font-size:12px;color:var(--muted);margin:6px 0}.empty-state{padding:35px 20px;text-align:center;color:var(--muted)}.empty-state i{font-size:28px;color:#a9c6ad;margin-bottom:12px}.empty-state h3{font:800 15px Manrope,sans-serif;color:var(--ink);margin:0 0 6px}.empty-state p{font-size:11px;line-height:1.6;max-width:360px;margin:auto}
+.bottomnav{position:fixed;z-index:40;bottom:0;left:0;right:0;padding:9px 14px calc(9px + env(safe-area-inset-bottom));background:rgba(255,255,255,.94);backdrop-filter:blur(18px);border-top:1px solid #e7ebe5}.navinner{max-width:650px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:5px}.navbtn{border:0;background:transparent;color:#98a29a;border-radius:13px;padding:7px 4px 5px;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:9px;font-weight:700}.navbtn i{font-size:17px}.navbtn.active{color:var(--green);background:#eef5ee}
+.toast{position:fixed;z-index:80;bottom:100px;left:50%;transform:translate(-50%,15px);opacity:0;pointer-events:none;background:#17251f;color:#fff;border-radius:12px;padding:11px 16px;font-size:11px;box-shadow:var(--shadow);transition:.25s;max-width:calc(100% - 30px);text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}
+.modalback{position:fixed;inset:0;z-index:70;background:#101a15a6;display:none;align-items:flex-end;justify-content:center;padding:15px}.modalback.open{display:flex}.modal{background:#fff;width:min(500px,100%);border-radius:24px;padding:22px;box-shadow:0 20px 70px #0003}.modal h3{font:800 18px Manrope,sans-serif;margin:0}.modal p{font-size:12px;color:var(--muted);line-height:1.6}.modal-actions{display:flex;gap:9px;margin-top:18px}.modal-actions button{flex:1}
+@media(min-width:760px){body{padding-bottom:40px}.bottomnav{position:static;background:transparent;border:0;padding:0 18px 24px}.navinner{background:#fff;border:1px solid var(--line);border-radius:18px;padding:6px;box-shadow:var(--shadow)}.navbtn{flex-direction:row;justify-content:center;padding:12px;font-size:11px}.navbtn i{font-size:14px}.toast{bottom:25px}}
+@media(max-width:760px){.shell{width:min(100% - 28px,620px)}main{padding-top:18px}.hero{grid-template-columns:1fr;gap:12px}.hero-copy{padding:17px 2px 4px}.hero h1{font-size:40px;letter-spacing:-2px;margin:12px 0}.hero p{font-size:13px}.hero-art{min-height:170px}.plate{width:135px;height:135px;font-size:68px}.note-a{left:12px;top:15px}.note-b{right:10px;bottom:13px}.layout{grid-template-columns:1fr}.sidecol{grid-template-columns:1fr 1fr}.builder{padding:18px}.ingredient-head,.ingredient-row{grid-template-columns:minmax(0,1fr) 67px 78px 32px;gap:6px}.ingredient-row input,.ingredient-row select{font-size:11px;padding:0 7px;height:41px}.remove{width:32px;height:32px}.builderfoot{align-items:flex-start;flex-direction:column}.primary{width:100%}.locationbar{padding:9px}.gpsbtn{padding:10px;font-size:0}.gpsbtn i{font-size:13px}.credits{font-size:10px;padding:8px 10px}.brandname{font-size:18px}}
+@media(max-width:390px){.sidecol{grid-template-columns:1fr}.ingredient-head,.ingredient-row{grid-template-columns:minmax(0,1fr) 58px 70px 30px;gap:5px}.ingredient-row input,.ingredient-row select{font-size:10px}.hero h1{font-size:35px}}
+</style>
 </head>
-<body class="bg-gray-50 text-gray-900 font-sans pb-24">
-
-    <!-- HEADER FISSO SUPERIORE -->
-    <header class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
-        <div class="max-w-2xl mx-auto px-4 py-3 flex items-center justify-between">
-            <div class="flex items-center space-x-2">
-                <div class="bg-brand-600 text-white p-2 rounded-xl font-black text-xl shadow-md">
-                    <i class="fa-solid fa-utensils"></i>
-                </div>
-                <div>
-                    <h1 class="text-lg font-bold text-gray-800 leading-tight">PiattoConto</h1>
-                    <p class="text-xs text-gray-500">Costo al centesimo &bull; No sprechi</p>
-                </div>
-            </div>
-
-            <!-- Contatore Credito Ricette Free (Freemium Stripe) -->
-            <div class="flex items-center space-x-2 bg-brand-50 border border-brand-200 px-3 py-1.5 rounded-full text-xs font-semibold text-brand-700">
-                <i class="fa-solid fa-bolt text-amber-500"></i>
-                <span id="free-credits-text">10/10 Ricette Gratis</span>
-            </div>
-        </div>
-
-        <!-- BARRA RAPIDA: Zona / CAP, Budget e Profilo Prezzo -->
-        <div class="bg-gray-100 border-t border-gray-200 px-4 py-2">
-            <div class="max-w-2xl mx-auto grid grid-cols-3 gap-2">
-                <!-- Zona / GPS -->
-                <div class="relative">
-                    <input type="text" id="user-location" placeholder="Città o CAP" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1 text-xs focus:outline-none focus:border-brand-500">
-                    <button onclick="trovaNegoziGPS()" class="absolute right-1 top-1 text-gray-400 hover:text-brand-600 p-1" title="Usa GPS">
-                        <i class="fa-solid fa-location-crosshairs text-xs"></i>
-                    </button>
-                </div>
-                <!-- Budget -->
-                <div>
-                    <input type="number" id="user-budget" value="4.00" step="0.5" class="w-full bg-white border border-gray-300 rounded-lg px-2.5 py-1 text-xs font-bold text-brand-600 focus:outline-none focus:border-brand-500" placeholder="Budget €">
-                </div>
-                <!-- Profilo Spesa -->
-                <div>
-                    <select id="user-profile" class="w-full bg-white border border-gray-300 rounded-lg px-1 py-1 text-xs font-medium text-gray-700 focus:outline-none focus:border-brand-500">
-                        <option value="discount">🏷️ Risparmio (Discount)</option>
-                        <option value="mid" selected>⚖️ Via di Mezzo</option>
-                        <option value="top">✨ Top Qualità</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- CONTENITORE PRINCIPALE DELLE SCHERMATE A PIENO SCHERMO -->
-    <main class="max-w-2xl mx-auto p-4">
-
-        <!-- SCHERMATA 1: CALCOLA PIATTO -->
-        <section id="view-calc" class="view-section space-y-4">
-            <!-- Banner Ad di Test (Sostituibile con il tuo network) -->
-            <div class="bg-gray-200 border border-dashed border-gray-400 rounded-xl p-3 text-center text-xs text-gray-500">
-                Spazio Pubblicitario / Banner Monetizzazione
-            </div>
-
-            <!-- Ricerca e Filtri Veloci -->
-            <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-200 space-y-3">
-                <div class="flex justify-between items-center">
-                    <h2 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-magnifying-glass text-brand-600 mr-1.5"></i> Scegli Ricetta o Modalità Inversa</h2>
-                    <button onclick="attivaModalitaInversa()" class="text-xs bg-amber-100 text-amber-800 font-semibold px-2.5 py-1 rounded-lg hover:bg-amber-200 transition">
-                        <i class="fa-solid fa-wallet mr-1"></i> Cosa mangio coi miei soldi?
-                    </button>
-                </div>
-                <input type="text" id="recipe-search" oninput="filtraRicette()" placeholder="Cerca piatto (es. Carbonara, Pollo, Riso...)" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-brand-500">
-                
-                <!-- Chip Filtri -->
-                <div class="flex gap-1.5 overflow-x-auto pb-1 text-xs">
-                    <button onclick="impostaFiltro('tutti')" class="px-3 py-1 bg-brand-600 text-white rounded-full font-medium whitespace-nowrap">Tutti</button>
-                    <button onclick="impostaFiltro('economico')" class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full font-medium whitespace-nowrap hover:bg-gray-200">&lt; 2,00 €</button>
-                    <button onclick="impostaFiltro('proteico')" class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full font-medium whitespace-nowrap hover:bg-gray-200">Proteici 💪</button>
-                    <button onclick="impostaFiltro('veloce')" class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full font-medium whitespace-nowrap hover:bg-gray-200">⏱️ &lt; 15 min</button>
-                </div>
-            </div>
-
-            <!-- Lista Ricette Disponibili -->
-            <div id="recipe-list-container" class="space-y-3">
-                <!-- Popolato da JS -->
-            </div>
-        </section>
-
-        <!-- SCHERMATA 2: NEGOZI E SUPERMERCATI VICINI -->
-        <section id="view-stores" class="view-section hidden space-y-4">
-            <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-200 space-y-3">
-                <div class="flex items-center justify-between">
-                    <h2 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-store text-brand-600 mr-1.5"></i> Supermercati Vicini (OpenStreetMap)</h2>
-                    <span class="text-xs text-gray-400" id="store-count">Raggio: 2.5 km</span>
-                </div>
-                <p class="text-xs text-gray-500">Negozi rilevati in base alla tua posizione o CAP inserito:</p>
-                
-                <!-- Lista Negozi Trovati -->
-                <div id="stores-list-container" class="space-y-2.5">
-                    <div class="p-3 bg-gray-50 rounded-xl border border-gray-200 text-xs text-gray-500 text-center">
-                        Inserisci un CAP o clicca l'icona GPS in alto per trovare i negozi intorno a te.
-                    </div>
-                </div>
-            </div>
-
-            <!-- Sezione Crowdsourcing Prezzi (Waze style) -->
-            <div class="bg-brand-50 border border-brand-200 p-4 rounded-2xl space-y-2">
-                <h3 class="font-bold text-brand-800 text-xs flex items-center">
-                    <i class="fa-solid fa-triangle-exclamation text-amber-500 mr-1.5 text-sm"></i> Prezzo errato allo scaffale?
-                </h3>
-                <p class="text-xs text-gray-600">Se sei al supermercato e vedi un prezzo diverso, segnalalo: guadagni punti affidabilità e aiuti la community.</p>
-                <button onclick="apriSegnalazionePrezzo()" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-semibold py-2 rounded-xl text-xs transition shadow-sm">
-                    Aggiorna Prezzo Prodotto
-                </button>
-            </div>
-        </section>
-
-        <!-- SCHERMATA 3: LA MIA DISPENSA DI CASA -->
-        <section id="view-pantry" class="view-section hidden space-y-4">
-            <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-200 space-y-3">
-                <div class="flex items-center justify-between">
-                    <h2 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-basket-shopping text-brand-600 mr-1.5"></i> La Mia Dispensa Virtuale</h2>
-                    <span class="text-xs bg-brand-100 text-brand-700 font-semibold px-2 py-0.5 rounded-md">Azzeramento Totale Cassa</span>
-                </div>
-                <p class="text-xs text-gray-500">Spunta ciò che hai già in casa. Il sistema calcolerà il piatto reale ma azzererà il costo di questi articoli dallo scontrino alla cassa:</p>
-                
-                <!-- Griglia Dispensa Interattiva -->
-                <div id="pantry-grid" class="grid grid-cols-2 gap-2 pt-1">
-                    <!-- Popolato da JS -->
-                </div>
-            </div>
-        </section>
-
-        <!-- SCHERMATA 4: ANTI-SPRECO & WHATSAPP -->
-        <section id="view-waste" class="view-section hidden space-y-4">
-            <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-200 space-y-3">
-                <h2 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-recycle text-brand-600 mr-1.5"></i> Gestione Avanzi & Anti-Spreco</h2>
-                <p class="text-xs text-gray-500">Se compri confezioni intere (es. pacco da 500g di pasta o scorta uova), ecco cosa ti resta in frigo e come riciclarlo domani a costo zero:</p>
-                
-                <div id="leftover-container" class="bg-gray-50 p-3 rounded-xl border border-gray-200 text-xs space-y-2">
-                    <p class="text-gray-400 italic text-center">Seleziona prima una ricetta nella schermata Calcola per vedere gli avanzi residui.</p>
-                </div>
-
-                <div class="pt-2">
-                    <button onclick="inviaListaWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 rounded-xl text-xs flex items-center justify-center space-x-2 shadow-sm transition">
-                        <i class="fa-brands fa-whatsapp text-sm"></i>
-                        <span>Invia Lista Spesa su WhatsApp (Coinquilini)</span>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- MODALE DETTAGLIO RICETTA / TIMER / ENERGIA -->
-    <div id="recipe-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
-        <div class="bg-white w-full max-w-lg rounded-t-3xl sm:rounded-2xl max-h-[90vh] overflow-y-auto p-5 space-y-4 shadow-2xl">
-            <div class="flex justify-between items-start border-b pb-3">
-                <div>
-                    <h3 id="modal-title" class="font-bold text-lg text-gray-800">Nome Piatto</h3>
-                    <p id="modal-subtitle" class="text-xs text-gray-500">Costo frazionato + Energia</p>
-                </div>
-                <button onclick="chiudiModale()" class="text-gray-400 hover:text-gray-600 p-2"><i class="fa-solid fa-xmark text-lg"></i></button>
-            </div>
-
-            <!-- Selettore Porzioni e Tipo Cucina (Gas / Induzione) -->
-            <div class="grid grid-cols-2 gap-2 bg-gray-50 p-3 rounded-xl text-xs">
-                <div>
-                    <label class="block font-semibold text-gray-600 mb-1">Porzioni:</label>
-                    <select id="modal-portions" onchange="ricalcolaModale()" class="w-full bg-white border border-gray-300 rounded-lg p-1.5 font-bold">
-                        <option value="1">1 Persona (Fuorisede)</option>
-                        <option value="2" selected>2 Persone</option>
-                        <option value="4">4 Persone (Famiglia)</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block font-semibold text-gray-600 mb-1">Tipo Cottura:</label>
-                    <select id="modal-energy-type" onchange="ricalcolaModale()" class="w-full bg-white border border-gray-300 rounded-lg p-1.5 font-bold">
-                        <option value="gas">🔥 Gas Metano</option>
-                        <option value="induzione" selected>⚡ Induzione / Elettrico</option>
-                        <option value="forno">⏲️ Forno Elettrico</option>
-                    </select>
-                </div>
-            </div>
-
-            <!-- Tabella Ingredienti e Costi -->
-            <div class="space-y-2">
-                <h4 class="font-bold text-xs text-gray-700 uppercase tracking-wide">Dettaglio Scontrino & Costo Piatto:</h4>
-                <div id="modal-ingredients-table" class="border rounded-xl overflow-hidden text-xs">
-                    <!-- Tabella dinamica -->
-                </div>
-            </div>
-
-            <!-- Riepilogo Economico & Energia -->
-            <div class="bg-brand-50 border border-brand-200 p-3 rounded-xl space-y-1.5 text-xs">
-                <div class="flex justify-between">
-                    <span class="text-gray-600">Costo Energia Cottura:</span>
-                    <span id="modal-energy-cost" class="font-bold text-gray-800">0,08 €</span>
-                </div>
-                <div class="flex justify-between">
-                    <span class="text-gray-600">Totale alla Cassa (Confezioni intere):</span>
-                    <span id="modal-checkout-total" class="font-bold text-gray-800">5,40 €</span>
-                </div>
-                <div class="flex justify-between text-brand-700 font-bold border-t border-brand-200 pt-1 text-sm">
-                    <span>Costo Reale Tuo Piatto:</span>
-                    <span id="modal-dish-cost">1,85 €</span>
-                </div>
-                <div class="flex justify-between text-emerald-600 font-semibold text-[11px] pt-1">
-                    <span>Risparmio vs Delivery (Glovo):</span>
-                    <span id="modal-delivery-saving">~ 8,15 € risparmiati!</span>
-                </div>
-            </div>
-
-            <!-- Tasto Avvia Cucina / Timer -->
-            <button onclick="avviaTimerCucina()" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 rounded-xl text-sm shadow-md transition flex items-center justify-center space-x-2">
-                <i class="fa-solid fa-stopwatch"></i>
-                <span>Avvia Cucina & Timer Guidato</span>
-            </button>
-        </div>
-    </div>
-
-    <!-- BARRA DI NAVIGAZIONE FISSA IN BASSO (STILE APP NATIVA) -->
-    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 py-2 px-6 z-40 shadow-lg">
-        <div class="max-w-2xl mx-auto flex justify-around items-center">
-            <button onclick="cambiaSchermata('calc')" id="nav-calc" class="nav-btn flex flex-col items-center text-brand-600 transition">
-                <i class="fa-solid fa-calculator text-lg"></i>
-                <span class="text-[10px] font-bold mt-0.5">Calcola</span>
-            </button>
-            <button onclick="cambiaSchermata('stores')" id="nav-stores" class="nav-btn flex flex-col items-center text-gray-400 hover:text-gray-600 transition">
-                <i class="fa-solid fa-store text-lg"></i>
-                <span class="text-[10px] font-medium mt-0.5">Negozi</span>
-            </button>
-            <button onclick="cambiaSchermata('pantry')" id="nav-pantry" class="nav-btn flex flex-col items-center text-gray-400 hover:text-gray-600 transition">
-                <i class="fa-solid fa-basket-shopping text-lg"></i>
-                <span class="text-[10px] font-medium mt-0.5">Dispensa</span>
-            </button>
-            <button onclick="cambiaSchermata('waste')" id="nav-waste" class="nav-btn flex flex-col items-center text-gray-400 hover:text-gray-600 transition">
-                <i class="fa-solid fa-recycle text-lg"></i>
-                <span class="text-[10px] font-medium mt-0.5">Anti-Spreco</span>
-            </button>
-        </div>
-    </nav>
-
-    <!-- LOGICA JAVASCRIPT DEL PRODOTTO -->
-    <script>
-        // Database Ricette & Ingredienti Frazionati
-        const ricetteDb = [
-            {
-                id: 1,
-                nome: "Carbonara Universitaria",
-                tag: "proteico",
-                tempo: 12,
-                pentole: 1,
-                calorie: "Alto",
-                ingredienti: [
-                    { nome: "Pasta (Spaghetti)", qtaUnitaria: 100, unita: "g", confQta: 500, confPrezzo: 0.85 },
-                    { nome: "Guanciale / Pancetta", qtaUnitaria: 80, unita: "g", confQta: 150, confPrezzo: 2.20 },
-                    { nome: "Uova", qtaUnitaria: 2, unita: "pezzi", confQta: 6, confPrezzo: 1.80 },
-                    { nome: "Pecorino / Formaggio grattugiato", qtaUnitaria: 30, unita: "g", confQta: 100, confPrezzo: 1.60 }
-                ]
-            },
-            {
-                id: 2,
-                nome: "Pasta Tonno e Pomodoro Veloce",
-                tag: "economico",
-                tempo: 10,
-                pentole: 1,
-                calorie: "Medio",
-                ingredienti: [
-                    { nome: "Pasta", qtaUnitaria: 100, unita: "g", confQta: 500, confPrezzo: 0.85 },
-                    { nome: "Tonno in scatola", qtaUnitaria: 80, unita: "g", confQta: 3, confPrezzo: 3.20 },
-                    { nome: "Passata di pomodoro", qtaUnitaria: 150, unita: "g", confQta: 700, confPrezzo: 1.10 }
-                ]
-            },
-            {
-                id: 3,
-                nome: "Riso in Bianco con Parmigiano",
-                tag: "economico",
-                tempo: 15,
-                pentole: 1,
-                calorie: "Leggero",
-                ingredienti: [
-                    { nome: "Riso", qtaUnitaria: 100, unita: "g", confQta: 1000, confPrezzo: 1.90 },
-                    { nome: "Parmigiano Reggiano", qtaUnitaria: 25, unita: "g", confQta: 200, confPrezzo: 3.50 },
-                    { nome: "Burro / Olio", qtaUnitaria: 15, unita: "g", confQta: 250, confPrezzo: 2.40 }
-                ]
-            },
-            {
-                id: 4,
-                nome: "Frittata di Patate Svuota-Frigo",
-                tag: "proteico",
-                tempo: 20,
-                pentole: 1,
-                calorie: "Medio",
-                ingredienti: [
-                    { nome: "Uova", qtaUnitaria: 3, unita: "pezzi", confQta: 6, confPrezzo: 1.80 },
-                    { nome: "Patate", qtaUnitaria: 200, unita: "g", confQta: 1000, confPrezzo: 1.40 },
-                    { nome: "Olio di semi / EVO", qtaUnitaria: 20, unita: "ml", confQta: 1000, confPrezzo: 5.50 }
-                ]
-            }
-        ];
-
-        // Dispensa dell'utente (salvata in localStorage)
-        let dispensaUtente = JSON.parse(localStorage.getItem('piattoconto_dispensa')) || {
-            "Olio di semi / EVO": true,
-            "Sale": true
-        };
-
-        // Elementi Dispensa predefiniti
-        const articoliDispensaMaster = [
-            "Olio di semi / EVO", "Sale", "Pepe", "Aglio", "Passata di pomodoro", "Pasta", "Riso"
-        ];
-
-        let ricettaSelezionataCorrente = null;
-        let creditiFreeRimanenti = 10;
-
-        // Inizializzazione all'avvio
-        window.onload = function() {
-            renderRicette(ricetteDb);
-            renderDispensa();
-        };
-
-        // Cambio schermate a pieno schermo (Bottom Navigation)
-        function cambiaSchermata(idScheda) {
-            document.querySelectorAll('.view-section').forEach(el => el.classList.add('hidden'));
-            document.getElementById(`view-${idScheda}`).classList.remove('hidden');
-
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.classList.remove('text-brand-600');
-                btn.classList.add('text-gray-400');
-            });
-            event.currentTarget.classList.remove('text-gray-400');
-            event.currentTarget.classList.add('text-brand-600');
-        }
-
-        // Renderizza lista ricette
-        function renderRicette(lista) {
-            const container = document.getElementById('recipe-list-container');
-            container.innerHTML = '';
-
-            lista.forEach(ricetta => {
-                let costoBaseStima = calcolaCostoTotaleRicetta(ricetta, 1, 'induzione', 'mid');
-                
-                let card = document.createElement('div');
-                card.className = "bg-white p-4 rounded-2xl shadow-sm border border-gray-200 flex items-center justify-between hover:border-brand-500 transition cursor-pointer";
-                card.onclick = () => apriDettaglioRicetta(ricetta);
-                
-                card.innerHTML = `
-                    <div class="space-y-1">
-                        <div class="flex items-center space-x-2">
-                            <h3 class="font-bold text-gray-800 text-sm">${ricetta.nome}</h3>
-                            <span class="text-[10px] bg-gray-100 text-gray-600 px-2 py-0.5 rounded-md font-medium">⏱️ ${ricetta.tempo} min</span>
-                            <span class="text-[10px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-md font-medium">🍳 ${ricetta.pentole} pentola</span>
-                        </div>
-                        <p class="text-xs text-gray-500">Costo piatto stimato per 1 persona</p>
-                    </div>
-                    <div class="text-right">
-                        <span class="text-base font-black text-brand-600">${costoBaseStima.toFixed(2)} €</span>
-                        <div class="text-[10px] text-gray-400">alla cassa ~${costoBaseStima > 3 ? '4.50€' : '2.80€'}</div>
-                    </div>
-                `;
-                container.appendChild(card);
-            });
-        }
-
-        // Calcolo matematico al grammo + energia + profilo spesa
-        function calcolaCostoTotaleRicetta(ricetta, porzioni, tipoEnergia, profilo) {
-            let moltiplicatoreProfilo = profilo === 'discount' ? 0.85 : (profilo === 'top' ? 1.30 : 1.0);
-            let costoIngredienti = 0;
-
-            ricetta.ingredienti.forEach(ing => {
-                let qtaNecessaria = ing.qtaUnitaria * porzioni;
-                let prezzoUnitarioAlGrammo = ing.confPrezzo / ing.confQta;
-                
-                // Se l'utente ha l'ingrediente in dispensa, il costo alla cassa è 0, ma nel piatto viene comunque contato il consumo
-                let inDispensa = dispensaUtente[ing.nome];
-                
-                costoIngredienti += (qtaNecessaria * prezzoUnitarioAlGrammo);
-            });
-
-            costoIngredienti *= moltiplicatoreProfilo;
-
-            // Calcolo energia cottura
-            let costoEnergia = 0;
-            if (tipoEnergia === 'gas') {
-                costoEnergia = (ricetta.tempo / 60) * 0.22; // stima gas
-            } else if (tipoEnergia === 'induzione') {
-                costoEnergia = (ricetta.tempo / 60) * 0.45; // stima elettricità induzione
-            } else if (tipoEnergia === 'forno') {
-                costoEnergia = (ricetta.tempo / 60) * 0.70; // stima forno
-            }
-
-            return costoIngredienti + costoEnergia;
-        }
-
-        // Modale Dettaglio
-        function apriDettaglioRicetta(ricetta) {
-            if (creditiFreeRimanenti <= 0) {
-                alert("Hai terminato le 10 ricette gratuite di questo mese! Attiva l'abbonamento per sbloccare ricette illimitate.");
-                return;
-            }
-            creditiFreeRimanenti--;
-            document.getElementById('free-credits-text').innerText = `${creditiFreeRimanenti}/10 Ricette Gratis`;
-
-            ricettaSelezionataCorrente = ricetta;
-            document.getElementById('modal-title').innerText = ricetta.nome;
-            ricalcolaModale();
-            document.getElementById('recipe-modal').classList.remove('hidden');
-        }
-
-        function chiudiModale() {
-            document.getElementById('recipe-modal').classList.add('hidden');
-        }
-
-        function ricalcolaModale() {
-            if (!ricettaSelezionataCorrente) return;
-            const porzioni = parseInt(document.getElementById('modal-portions').value);
-            const tipoEnergia = document.getElementById('modal-energy-type').value;
-            const profilo = document.getElementById('user-profile').value;
-
-            let moltiplicatoreProfilo = profilo === 'discount' ? 0.85 : (profilo === 'top' ? 1.30 : 1.0);
-            let tableHtml = `<table class="w-full text-left border-collapse">
-                <tr class="bg-gray-100 text-gray-600 border-b">
-                    <th class="p-2">Ingrediente</th>
-                    <th class="p-2">Qta</th>
-                    <th class="p-2">Conf. Intera</th>
-                    <th class="p-2 text-right">Tuo Piatto</th>
-                </tr>`;
-
-            let totaleCassa = 0;
-            let costoPiatto = 0;
-
-            ricettaSelezionataCorrente.ingredienti.forEach(ing => {
-                let qtaUsata = ing.qtaUnitaria * porzioni;
-                let prezzoFrazionato = (qtaUsata * (ing.confPrezzo / ing.confQta)) * moltiplicatoreProfilo;
-                let prezzoIntero = ing.confPrezzo * moltiplicatoreProfilo;
-                
-                let inDispensa = dispensaUtente[ing.nome];
-                if (!inDispensa) {
-                    totaleCassa += prezzoIntero;
-                }
-                costoPiatto += prezzoFrazionato;
-
-                tableHtml += `<tr class="border-b ${inDispensa ? 'bg-emerald-50/50 text-emerald-800' : ''}">
-                    <td class="p-2 font-medium">${ing.nome} ${inDispensa ? '<span class="text-[9px] bg-emerald-100 px-1 rounded">In dispensa</span>' : ''}</td>
-                    <td class="p-2">${qtaUsata}${ing.unita}</td>
-                    <td class="p-2 text-gray-500">${ing.confQta}${ing.unita} (${prezzoIntero.toFixed(2)}€)</td>
-                    <td class="p-2 text-right font-bold text-brand-600">${prezzoFrazionato.toFixed(2)}€</td>
-                </tr>`;
-            });
-
-            tableHtml += `</table>`;
-            document.getElementById('modal-ingredients-table').innerHTML = tableHtml;
-
-            // Costo energia
-            let costoEnergia = tipoEnergia === 'gas' ? (ricettaSelezionataCorrente.tempo/60)*0.22 : (tipoEnergia === 'induzione' ? (ricettaSelezionataCorrente.tempo/60)*0.45 : (ricettaSelezionataCorrente.tempo/60)*0.70);
-            
-            document.getElementById('modal-energy-cost').innerText = `${costoEnergia.toFixed(2)} € (${ricettaSelezionataCorrente.tempo} min)`;
-            document.getElementById('modal-checkout-total').innerText = `${totaleCassa.toFixed(2)} €`;
-            document.getElementById('modal-dish-cost').innerText = `${(costoPiatto + costoEnergia).toFixed(2)} €`;
-            document.getElementById('modal-delivery-saving').innerText = `~ ${( (costoPiatto + costoEnergia) * 4.5 ).toFixed(2)} € risparmiati vs Delivery!`;
-
-            // Prepara avanzi anti-spreco
-            preparaAvanzi(ricettaSelezionataCorrente, porzioni);
-        }
-
-        // Gestione Dispensa
-        function renderDispensa() {
-            const grid = document.getElementById('pantry-grid');
-            grid.innerHTML = '';
-            articoliDispensaMaster.forEach(articolo => {
-                let posseduto = dispensaUtente[articolo] || false;
-                let div = document.createElement('div');
-                div.className = `p-3 rounded-xl border flex items-center justify-between cursor-pointer transition ${posseduto ? 'bg-brand-50 border-brand-300 text-brand-800 font-bold' : 'bg-gray-50 border-gray-200 text-gray-600'}`;
-                div.onclick = () => {
-                    dispensaUtente[articolo] = !posseduto;
-                    localStorage.setItem('piattoconto_dispensa', JSON.stringify(dispensaUtente));
-                    renderDispensa();
-                };
-                div.innerHTML = `
-                    <span class="text-xs">${articolo}</span>
-                    <i class="fa-solid ${posseduto ? 'fa-circle-check text-brand-600 text-sm' : 'fa-circle text-gray-300'}"></i>
-                `;
-                grid.appendChild(div);
-            });
-        }
-
-        // Anti-Spreco & Avanzi
-        function preparaAvanzi(ricetta, porzioni) {
-            const container = document.getElementById('leftover-container');
-            let html = `<p class="font-bold text-gray-700">Avanzi stimati nel tuo frigo dopo la spesa:</p>`;
-            ricetta.ingredienti.forEach(ing => {
-                let qtaUsata = ing.qtaUnitaria * porzioni;
-                if (ing.confQta > qtaUsata && ing.unita === 'g') {
-                    let avanzo = ing.confQta - qtaUsata;
-                    html += `<div class="flex justify-between items-center text-gray-600 py-1 border-b border-gray-100">
-                        <span>📦 ${ing.nome}</span>
-                        <span class="font-semibold text-brand-700">Avanzano ${avanzo}g (Valore residuo: ~${(avanzo * (ing.confPrezzo/ing.confQta)).toFixed(2)}€)</span>
-                    </div>`;
-                }
-            });
-            container.innerHTML = html;
-        }
-
-        // Geolocalizzazione OpenStreetMap Reale
-        function trovaNegoziGPS() {
-            const inputVal = document.getElementById('user-location').value;
-            const container = document.getElementById('stores-list-container');
-            container.innerHTML = `<div class="p-3 text-center text-xs text-brand-600 animate-pulse"><i class="fa-solid fa-spinner fa-spin mr-1"></i> Ricerca supermercati reali in corso (OpenStreetMap)...</div>`;
-            
-            setTimeout(() => {
-                container.innerHTML = `
-                    <div class="p-3 bg-brand-50 border border-brand-200 rounded-xl flex items-center justify-between text-xs">
-                        <div>
-                            <h4 class="font-bold text-brand-900">Lidl Discount</h4>
-                            <p class="text-gray-500">Via Roma 24 &bull; 450m da te</p>
-                        </div>
-                        <span class="bg-brand-600 text-white font-bold px-2.5 py-1 rounded-lg">Consigliato 🏆</span>
-                    </div>
-                    <div class="p-3 bg-gray-50 border border-gray-200 rounded-xl flex items-center justify-between text-xs">
-                        <div>
-                            <h4 class="font-bold text-gray-800">Eurospin</h4>
-                            <p class="text-gray-500">Corso Italia 12 &bull; 800m da te</p>
-                        </div>
-                        <span class="text-gray-600 font-semibold px-2.5 py-1">Ottimo Prezzo</span>
-                    </div>
-                    <div class="p-3 bg-gray-50 border border-gray-200 rounded-xl flex items-center justify-between text-xs">
-                        <div>
-                            <h4 class="font-bold text-gray-800">Conad City</h4>
-                            <p class="text-gray-500">Via Dante 5 &bull; 1.1 km da te</p>
-                        </div>
-                        <span class="text-gray-600 font-semibold px-2.5 py-1">Vicinissimo</span>
-                    </div>
-                `;
-                document.getElementById('store-count').innerText = "3 supermercati trovati";
-            }, 800);
-        }
-
-        // Filtri Ricette
-        function impostaFiltro(tipo) {
-            if (tipo === 'tutti') renderRicette(ricetteDb);
-            else if (tipo === 'economico') renderRicette(ricetteDb.filter(r => calcolaCostoTotaleRicetta(r, 1, 'induzione', 'mid') < 2.0));
-            else if (tipo === 'proteico') renderRicette(ricetteDb.filter(r => r.tag === 'proteico'));
-            else if (tipo === 'veloce') renderRicette(ricetteDb.filter(r => r.tempo <= 15));
-        }
-
-        function filtraRicette() {
-            const query = document.getElementById('recipe-search').value.toLowerCase();
-            const filtrate = ricetteDb.filter(r => r.nome.toLowerCase().includes(query));
-            renderRicette(filtrate);
-        }
-
-        // Modalità Inversa (Cosa mangio col budget)
-        function attivaModalitaInversa() {
-            const budgetInput = parseFloat(document.getElementById('user-budget').value) || 3.0;
-            const accessibili = ricetteDb.filter(r => calcolaCostoTotaleRicetta(r, 1, 'induzione', 'mid') <= budgetInput);
-            renderRicette(accessibili);
-            alert(`Filtro applicato: ti mostro solo le ricette che costano meno di ${budgetInput.toFixed(2)} € per piatto!`);
-        }
-
-        function avviaTimerCucina() {
-            alert("Timer avviato! Goditi la preparazione. Il sistema ha registrato la sessione.");
-            chiudiModale();
-        }
-
-        function apriSegnalazionePrezzo() {
-            let prod = prompt("Quale prodotto vuoi segnalare (es. Pasta 500g)?");
-            let prezzo = prompt("Quanto costa al supermercato?");
-            if (prod && prezzo) {
-                alert(`Grazie! Segnalazione registrata: ${prod} a ${prezzo}€. I prezzi si aggiorneranno per tutta la community.`);
-            }
-        }
-
-        function inviaListaWhatsApp() {
-            window.open(`https://api.whatsapp.com/send?text=Ecco%20la%20lista%20della%20spesa%20calcolata%20con%20PiattoConto!%20Organizziamoci%20per%20la%20cena.`);
-        }
-    </script>
-</body>
-</html>
+<body>
+<header class="topbar"><div class="shell topinner">
+<a class="brand" href="#" onclick="showPage('home');return false"><div class="logo"><i class="fa-solid fa-bowl-food"></i></div><div><div class="brandname">piattoconto<span style="color:var(--green)">.</span></div><div class="brandtag">La spesa, fatta con intelligenza.</div></div></a>
+<div class="topright"><div class="credits"><i class="fa-solid fa-bolt"></i><span id="credits-label">10 calcoli gratuiti</span></div><div class="profile"><i class="fa-regular fa-user"></i></div></div>
+</div></header>
+<main class="shell">
+<div id="page-home" class="page active">
+<section class="hero"><div class="hero-copy"><div class="eyebrow">Meno sprechi, più gusto</div><h1>La tua ricetta.<br><span>La spesa più smart.</span></h1><p>Scrivi cosa vuoi cucinare, indica le quantità e organizza quello che ti manca. Il modo più semplice per tenere sotto controllo la spesa, senza rinunciare a quello che ami.</p></div><div class="hero-art"><div class="float-note note-a"><i class="fa-solid fa-leaf" style="color:var(--green)"></i> Zero sprechi<small>Usa quello che hai già</small></div><div class="plate">🍝</div><div class="float-note note-b"><i class="fa-solid fa-basket-shopping" style="color:var(--green)"></i> Spesa consapevole<small>Ogni ingrediente conta</small></div></div></section>
+<div class="ad-slot"><div><i class="fa-solid fa-rectangle-ad"></i> Spazio pubblicitario <span>Area riservata a banner non invasivi</span></div></div>
+<div class="locationbar"><div class="locicon"><i class="fa-solid fa-location-dot"></i></div><div class="locfield"><label for="location-input">LA TUA ZONA</label><input id="location-input" type="text" placeholder="Inserisci CAP o città" autocomplete="postal-code"></div><button class="gpsbtn" onclick="useGPS()"><i class="fa-solid fa-crosshairs"></i> Usa GPS</button></div>
+<div class="layout">
+<section class="card builder">
+<div class="sectionhead"><div><h2>Costruisci la tua ricetta</h2><p>Nessun menu preimpostato: scegli tu ingredienti e quantità.</p></div><div class="step">01</div></div>
+<div class="dish-field"><label class="fieldlabel" for="dish-name">COME SI CHIAMA IL TUO PIATTO?</label><input class="input" id="dish-name" maxlength="70" placeholder="Es. Pasta alla carbonara"></div>
+<div class="sectionhead" style="margin-bottom:10px"><div><h2 style="font-size:14px">Ingredienti</h2><p>Aggiungi tutto quello che ti serve.</p></div><span style="font-size:10px;color:var(--muted)" id="ingredient-count">3 ingredienti</span></div>
+<div class="ingredient-head"><span>Ingrediente</span><span>Quantità</span><span>Unità</span><span></span></div>
+<div id="ingredient-rows"></div>
+<button class="addrow" onclick="addIngredient()"><i class="fa-solid fa-plus"></i> Aggiungi ingrediente</button>
+<div class="builderfoot"><div class="hint"><i class="fa-solid fa-circle-info"></i> Puoi modificare tutto in qualsiasi momento. I prezzi reali dei negozi saranno collegati nel prossimo aggiornamento.</div><button class="primary" onclick="calculateList()">Prepara la mia spesa <i class="fa-solid fa-arrow-right"></i></button></div>
+</section>
+<aside class="sidecol">
+<div class="card sidecard"><div class="sectionhead" style="margin-bottom:8px"><div><h2 class="side-title">La mia dispensa</h2><p class="side-desc">Spunta ciò che hai già a casa: lo toglieremo dalla lista della spesa.</p></div><div class="step"><i class="fa-solid fa-box-open"></i></div></div><div class="pantry-preview" id="pantry-preview"></div><div class="pantry-add"><input id="pantry-new" placeholder="Aggiungi un ingrediente"><button class="smallbtn" onclick="addPantryItem()">Aggiungi</button></div><button class="secondary" style="width:100%;margin-top:12px" onclick="showPage('pantry')">Gestisci tutta la dispensa <i class="fa-solid fa-arrow-right"></i></button></div>
+<div class="advice"><i class="fa-solid fa-lightbulb"></i><strong>Un piccolo trucco anti-spreco</strong><p>Prima di fare la spesa, controlla cosa hai già in frigo e in dispensa. Anche pochi ingredienti possono fare la differenza.</p></div>
+</aside>
+</div>
+<section class="card results" id="results">
+<div class="result-top"><div><h2 id="result-title">La tua lista è pronta</h2><div style="font-size:10px;color:var(--muted);margin-top:4px" id="result-subtitle"></div></div><span class="status">LISTA PRONTA</span></div>
+<p class="result-summary" id="result-summary"></p><div class="result-list" id="result-list"></div>
+<div class="energy"><div class="energy-head"><strong><i class="fa-solid fa-fire-flame-curved" style="color:var(--orange);margin-right:5px"></i> Stima del costo di cottura</strong><select id="energy-type" onchange="updateEnergy()"><option value="induzione">Induzione</option><option value="gas">Gas metano</option><option value="forno">Forno elettrico</option></select></div><div class="energy-cost" id="energy-cost">—</div><div class="energy-note">Stima indicativa modificabile in futuro con la tua tariffa energetica. Non è inclusa nel costo della spesa.</div></div>
+<div class="result-actions"><button class="primary" style="flex:1" onclick="shareWhatsApp()"><i class="fa-brands fa-whatsapp"></i> Condividi lista</button><button class="secondary" onclick="window.print()"><i class="fa-solid fa-print"></i> Stampa</button></div>
+<div class="ad-slot compact"><div><i class="fa-solid fa-rectangle-ad"></i> Spazio sponsor <span>Posizione pubblicitaria dopo il contenuto utile</span></div></div>
+</section>
+</div>
+<div id="page-pantry" class="page"><div class="pagehead"><h1>La mia dispensa</h1><p>Quello che hai già, non serve comprarlo di nuovo.</p></div><div class="card sidecard"><div class="sectionhead"><div><h2 class="side-title">Ingredienti disponibili</h2><p class="side-desc">Le tue scelte vengono salvate automaticamente su questo dispositivo.</p></div><div class="step"><i class="fa-solid fa-box-open"></i></div></div><div id="pantry-full" class="pantry-preview"></div><div class="pantry-add"><input id="pantry-new-full" placeholder="Es. Parmigiano, ceci, latte"><button class="smallbtn" onclick="addPantryItem(true)">Aggiungi</button></div></div></div>
+<div id="page-stores" class="page"><div class="pagehead"><h1>Supermercati vicini</h1><p>La ricerca dei negozi reali e il confronto dei listini arriveranno nel prossimo aggiornamento.</p></div><div class="card"><div class="empty-state"><i class="fa-solid fa-map-location-dot"></i><h3>Stiamo preparando la mappa</h3><p>Qui troverai i supermercati fisici vicino a te, la distanza e il confronto dei prezzi verificati. Per ora puoi indicare il CAP o usare il GPS nella schermata principale.</p><button class="secondary" style="margin-top:16px" onclick="showPage('home')">Torna alla tua ricetta</button></div></div></div>
+<div id="page-savings" class="page"><div class="pagehead"><h1>Risparmia ogni giorno</h1><p>Piccole abitudini per spendere meglio e buttare via meno cibo.</p></div><div class="card sidecard"><div class="mini-stats"><div class="mini-stat"><strong>1</strong><span>Controlla la dispensa</span></div><div class="mini-stat"><strong>2</strong><span>Pianifica le quantità</span></div><div class="mini-stat"><strong>3</strong><span>Condividi la spesa</span></div><div class="mini-stat"><strong>4</strong><span>Riutilizza gli avanzi</span></div></div><div class="advice" style="margin-top:16px"><i class="fa-solid fa-seedling"></i><strong>La spesa intelligente parte da te</strong><p>Prepara una lista prima di uscire, evita acquisti doppi e condividi le quantità con chi vive con te.</p></div></div></div>
+</main>
+<nav class="bottomnav"><div class="navinner"><button class="navbtn active" data-page="home" onclick="showPage('home')"><i class="fa-solid fa-wand-magic-sparkles"></i><span>La mia ricetta</span></button><button class="navbtn" data-page="stores" onclick="showPage('stores')"><i class="fa-solid fa-store"></i><span>Negozi</span></button><button class="navbtn" data-page="pantry" onclick="showPage('pantry')"><i class="fa-solid fa-box-open"></i><span>Dispensa</span></button><button class="navbtn" data-page="savings" onclick="showPage('savings')"><i class="fa-solid fa-leaf"></i><span>Risparmio</span></button></div></nav>
+<div class="toast" id="toast"></div>
+<div class="modalback" id="location-modal"><div class="modal"><h3>Posizione acquisita</h3><p id="location-message">La posizione è stata rilevata. Nel prossimo passaggio la useremo per trovare i supermercati reali nelle vicinanze.</p><div class="modal-actions"><button class="secondary" onclick="closeLocationModal()">Va bene</button></div></div></div>
+<script>
+const STORAGE_KEY="piattoconto_v2";
+const PANTRY_KEY="piattoconto_pantry_v2";
+const DEFAULT_PANTRY=["Olio","Sale","Pepe","Aglio","Zucchero","Farina","Passata","Pasta","Riso","Aceto"];
+let ingredients=[{name:"Pasta",qty:100,unit:"g"},{name:"Guanciale",qty:80,unit:"g"},{name:"Uova",qty:2,unit:"pezzi"}];
+let pantry=loadPantry();
+let lastList=[];
+let monthlyCount=loadMonthlyCount();
+function loadPantry(){try{const v=JSON.parse(localStorage.getItem(PANTRY_KEY));return Array.isArray(v)?v:DEFAULT_PANTRY.map(n=>({name:n,owned:["Olio","Sale"].includes(n)}));}catch(e){return DEFAULT_PANTRY.map(n=>({name:n,owned:["Olio","Sale"].includes(n)}));}}
+function loadMonthlyCount(){try{const d=JSON.parse(localStorage.getItem(STORAGE_KEY));const month=new Date().toISOString().slice(0,7);return d&&d.month===month?Number(d.count)||0:0;}catch(e){return 0;}}
+function saveCount(){localStorage.setItem(STORAGE_KEY,JSON.stringify({month:new Date().toISOString().slice(0,7),count:monthlyCount}));}
+function updateCredits(){document.getElementById("credits-label").textContent=Math.max(0,10-monthlyCount)+" calcoli gratuiti";}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function toast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");clearTimeout(window._toastTimer);window._toastTimer=setTimeout(()=>t.classList.remove("show"),2600);}
+function renderIngredients(){const root=document.getElementById("ingredient-rows");root.innerHTML="";ingredients.forEach((it,i)=>{const row=document.createElement("div");row.className="ingredient-row";row.innerHTML='<input aria-label="Nome ingrediente" placeholder="Es. Pomodori" maxlength="60" value="'+esc(it.name)+'" oninput="ingredients['+i+'].name=this.value"><input aria-label="Quantità" type="number" min="0.01" step="any" value="'+esc(it.qty)+'" oninput="ingredients['+i+'].qty=this.value"><select aria-label="Unità di misura" onchange="ingredients['+i+'].unit=this.value"><option value="g" '+(it.unit==="g"?"selected":"")+'>g</option><option value="ml" '+(it.unit==="ml"?"selected":"")+'>ml</option><option value="pezzi" '+(it.unit==="pezzi"?"selected":"")+'>pz</option></select><button class="remove" aria-label="Rimuovi ingrediente" onclick="removeIngredient('+i+')"><i class="fa-solid fa-xmark"></i></button>';root.appendChild(row);});document.getElementById("ingredient-count").textContent=ingredients.length+" ingredienti";}
+function addIngredient(){ingredients.push({name:"",qty:100,unit:"g"});renderIngredients();const inputs=document.querySelectorAll("#ingredient-rows input");if(inputs.length)inputs[inputs.length-2].focus();}
+function removeIngredient(i){if(ingredients.length===1){toast("Aggiungi almeno un ingrediente alla ricetta.");return;}ingredients.splice(i,1);renderIngredients();}
+function savePantry(){localStorage.setItem(PANTRY_KEY,JSON.stringify(pantry));renderPantry();}
+function renderPantry(){["pantry-preview","pantry-full"].forEach(id=>{const root=document.getElementById(id);if(!root)return;root.innerHTML="";pantry.forEach((p,i)=>{const label=document.createElement("label");label.className="pantry-chip"+(p.owned?" active":"");label.innerHTML='<input type="checkbox" '+(p.owned?"checked":"")+' aria-label="'+esc(p.name)+' già in dispensa" onchange="togglePantry('+i+',this.checked)"><span>'+esc(p.name)+'</span>';root.appendChild(label);});if(!pantry.length)root.innerHTML='<span style="font-size:11px;color:var(--muted)">La dispensa è vuota. Aggiungi i tuoi ingredienti.</span>';});}
+function togglePantry(i,v){pantry[i].owned=v;localStorage.setItem(PANTRY_KEY,JSON.stringify(pantry));renderPantry();}
+function addPantryItem(full){const input=document.getElementById(full?"pantry-new-full":"pantry-new");const name=input.value.trim();if(!name)return;if(pantry.some(p=>p.name.toLowerCase()===name.toLowerCase())){toast("Questo ingrediente è già nella dispensa.");return;}pantry.push({name:name,owned:false});input.value="";savePantry();toast("Ingrediente aggiunto alla dispensa.");}
+function calculateList(){const dish=document.getElementById("dish-name").value.trim();const valid=ingredients.map(x=>({name:String(x.name||"").trim(),qty:Number(x.qty),unit:x.unit})).filter(x=>x.name&&Number.isFinite(x.qty)&&x.qty>0);if(!dish){toast("Dai un nome alla tua ricetta.");document.getElementById("dish-name").focus();return;}if(!valid.length){toast("Inserisci almeno un ingrediente con quantità valida.");return;}if(monthlyCount>=10){toast("Hai raggiunto i 10 calcoli gratuiti di questo mese.");return;}monthlyCount++;saveCount();updateCredits();lastList=valid.map(x=>({...x,owned:pantry.some(p=>p.owned&&p.name.toLowerCase()===x.name.toLowerCase())}));document.getElementById("result-title").textContent=dish;document.getElementById("result-subtitle").textContent=valid.length+" ingredienti · "+lastList.filter(x=>!x.owned).length+" da acquistare";document.getElementById("result-summary").textContent="Ecco cosa ti serve. Gli ingredienti che hai già in dispensa sono esclusi dalla lista da acquistare. Il totale economico sarà disponibile quando collegheremo i listini reali dei supermercati.";const root=document.getElementById("result-list");root.innerHTML="";lastList.forEach(x=>{const el=document.createElement("div");el.className="result-item";el.innerHTML='<div class="check"><i class="fa-solid '+(x.owned?"fa-check":"fa-basket-shopping")+'"></i></div><div><strong>'+esc(x.name)+'</strong><small>'+(x.owned?"Già presente in dispensa":"Da acquistare")+'</small></div><span class="qty">'+esc(x.qty)+" "+(x.unit==="pezzi"?"pz":x.unit)+'</span>';root.appendChild(el);});document.getElementById("results").classList.add("show");updateEnergy();document.getElementById("results").scrollIntoView({behavior:"smooth",block:"start"});}
+function updateEnergy(){const type=document.getElementById("energy-type").value;const rates={induzione:0.12,gas:0.07,forno:0.22};const names={induzione:"Induzione",gas:"Gas metano",forno:"Forno elettrico"};document.getElementById("energy-cost").textContent="Circa "+rates[type].toLocaleString("it-IT",{style:"currency",currency:"EUR"})+" per 30 minuti · "+names[type];}
+function shareWhatsApp(){if(!lastList.length){toast("Prepara prima la tua lista della spesa.");return;}const dish=document.getElementById("dish-name").value.trim();let msg="🛒 Lista della spesa — "+dish+"\n\n";lastList.forEach(x=>{msg+=(x.owned?"✅ ":"▫️ ")+x.name+" — "+x.qty+" "+(x.unit==="pezzi"?"pezzi":x.unit)+(x.owned?" (già in casa)":"")+"\n";});msg+="\nCreato con PiattoConto";window.open("https://wa.me/?text="+encodeURIComponent(msg),"_blank","noopener");}
+function showPage(page){document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));const target=document.getElementById("page-"+page);if(target)target.classList.add("active");document.querySelectorAll(".navbtn").forEach(b=>b.classList.toggle("active",b.dataset.page===page));window.scrollTo({top:0,behavior:"smooth"});}
+function useGPS(){if(!navigator.geolocation){toast("La geolocalizzazione non è supportata da questo browser.");return;}toast("Richiesta della posizione in corso…");navigator.geolocation.getCurrentPosition(pos=>{const lat=pos.coords.latitude.toFixed(5),lon=pos.coords.longitude.toFixed(5);localStorage.setItem("piattoconto_location",JSON.stringify({lat:Number(lat),lon:Number(lon)}));document.getElementById("location-input").value="Posizione GPS acquisita";document.getElementById("location-message").textContent="Coordinate acquisite ("+lat+", "+lon+"). Nel prossimo passaggio le useremo per cercare i supermercati reali nelle vicinanze.";document.getElementById("location-modal").classList.add("open");},err=>{toast(err.code===1?"Permetti l'accesso alla posizione per usare il GPS.":"Non è stato possibile rilevare la posizione. Inserisci il CAP manualmente.");},{enableHighAccuracy:false,timeout:10000,maximumAge:300000});}
+function closeLocationModal(){document.getElementById("location-modal").classList.remove("open");}
+document.getElementById("location-input").addEventListener("change",e=>localStorage.setItem("piattoconto_cap",e.target.value.trim()));
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeLocationModal();});
+renderIngredients();renderPantry();updateCredits();
+</script>
+</body></html>
