@@ -183,16 +183,91 @@ body{background:radial-gradient(ellipse at 92% 0%,#e2edff 0,transparent 38%),var
  .navbtn.active{background:#eaf2ff}
 }
 
+
+/* Redesign compatto mobile-first di Fudgett */
+:root{--blue:#2563eb}
+.hero-compact{display:block;margin:0 0 17px;min-height:0}
+.hero-compact .hero-copy{padding:8px 2px 7px}
+.hero-compact .eyebrow{font-size:10px}
+.hero-compact h1{font-size:clamp(29px,4vw,42px);line-height:1.06;letter-spacing:-1.7px;margin:9px 0 7px}
+.hero-compact p{font-size:13px;line-height:1.5;margin:0;max-width:580px}
+.hero-art{display:none!important}
+main{padding-top:17px}
+.layout{grid-template-columns:minmax(0,1.45fr) minmax(250px,.75fr);gap:16px}
+.builder{padding:21px}
+.sectionhead{margin-bottom:15px}
+.dish-field{margin-bottom:17px}
+.sidecol{gap:12px}
+.sidecard{padding:17px}
+.pantry-preview{max-height:145px;overflow:auto;align-content:flex-start}
+.invite-card{display:grid;grid-template-columns:36px 1fr auto;gap:10px;align-items:center}
+.invite-icon{width:36px;height:36px;border-radius:12px;background:#e8f1ff;color:#2563eb;display:grid;place-items:center}
+.invite-card strong{font-size:12px}
+.invite-card p{font-size:10px;color:var(--muted);margin:3px 0 0}
+.invite-card .secondary{padding:9px 11px;white-space:nowrap}
+.result-item{cursor:pointer}
+.buy-check{width:18px;height:18px;accent-color:#2563eb;flex:none}
+.result-copy{min-width:0;flex:1}
+.result-copy strong{font-size:12px}
+.result-item.bought .result-copy strong{text-decoration:line-through;color:#8492a6}
+.result-item.bought{background:#f5f8fc}
+.result-copy small{display:block;color:var(--muted);font-size:10px;margin-top:2px}
+.result-actions{flex-wrap:wrap}
+.legal-links{display:flex;justify-content:center;gap:8px;margin-top:7px;font-size:10px;color:#8492a6}
+.legal-links button{border:0;background:transparent;color:inherit;font-size:10px;padding:2px}
+@media(max-width:760px){
+ body{padding-bottom:82px}
+ main{padding:12px 0 24px}
+ .shell{width:min(100% - 24px,620px)}
+ .hero-compact{margin-bottom:13px}
+ .hero-compact .hero-copy{padding:5px 1px 2px}
+ .hero-compact h1{font-size:31px;letter-spacing:-1.3px;margin:7px 0 5px}
+ .hero-compact p{font-size:12px}
+ .layout{grid-template-columns:minmax(0,1fr);gap:11px}
+ .builder{padding:15px;border-radius:18px}
+ .sectionhead{margin-bottom:12px}
+ .sectionhead h2{font-size:17px}
+ .dish-field{margin-bottom:14px}
+ .input{height:43px}
+ .ingredient-head,.ingredient-row{grid-template-columns:minmax(0,1fr) 65px 70px 30px;gap:5px}
+ .ingredient-row{margin-bottom:7px}
+ .ingredient-row input,.ingredient-row select{height:39px;font-size:11px;padding:0 7px}
+ .remove{width:30px;height:30px}
+ .addrow{padding:10px;font-size:11px}
+ .builderfoot{margin-top:13px;padding-top:12px;gap:10px}
+ .builderfoot .hint{font-size:9px}
+ .builderfoot .primary{padding:12px;font-size:11px}
+ .sidecol{display:grid;grid-template-columns:1fr;gap:9px}
+ .sidecard{padding:14px}
+ .sidecol>.card:first-child .sectionhead{margin-bottom:8px}
+ .pantry-preview{display:flex;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;max-height:none;padding:2px 0 7px;scrollbar-width:thin}
+ .pantry-chip{white-space:nowrap;flex:none;padding:7px 9px}
+ .pantry-add{margin-top:7px}
+ .invite-card{grid-template-columns:34px 1fr auto;padding:12px}
+ .invite-card p{font-size:9px}
+ .invite-card .secondary{font-size:10px}
+ .results{margin-top:12px;padding:15px}
+ .result-item{padding:10px}
+ .result-actions button{font-size:10px}
+ .bottomnav{padding:7px 10px calc(7px + env(safe-area-inset-bottom))}
+ .navbtn{padding:6px 3px 4px;font-size:9px}
+ .legal-links{margin-top:5px}
+}
+@media(min-width:761px){
+ .hero-compact .hero-copy{padding:10px 2px 12px}
+ .sidecol{position:sticky;top:92px}
+}
+
 </style>
 </head>
 <body>
 <header class="topbar"><div class="shell topinner">
-<a class="brand" href="#" onclick="showPage('home');return false"><div class="logo"><i class="fa-solid fa-bowl-food"></i></div><div><div class="brandname">fudgett<span style="color:var(--blue)">.</span></div><div class="brandtag">Mangia bene. Spendi meglio.</div></div></a>
+<a class="brand" href="#" onclick="showPage('home');return false"><div class="logo"><i class="fa-solid fa-basket-shopping"></i></div><div><div class="brandname">fudgett<span style="color:var(--blue)">.</span></div><div class="brandtag">Mangia bene. Spendi meglio.</div></div></a>
 <div class="topright"><div class="credits"><i class="fa-solid fa-heart"></i> 100% gratis · Nessun account</div></div>
 </div></header>
 <main class="shell">
 <div id="page-home" class="page active">
-<section class="hero"><div class="hero-copy"><div class="eyebrow">LA SPESA INTELLIGENTE, SENZA COMPLICAZIONI</div><h1>La spesa giusta.<br><span>Al prezzo giusto.</span></h1><p>Organizza ingredienti e quantità, controlla cosa hai già in casa e prepara una lista pronta da condividere. Tutto gratis, senza account e senza complicazioni.</p></div><div class="hero-art"><div class="float-note note-a"><i class="fa-solid fa-leaf" style="color:var(--green)"></i> Zero sprechi<small>Usa quello che hai già</small></div><div class="plate">🥑</div><div class="float-note note-b"><i class="fa-solid fa-basket-shopping" style="color:var(--green)"></i> Spesa consapevole<small>Ogni ingrediente conta</small></div></div></section>
+<section class="hero hero-compact"><div class="hero-copy"><div class="eyebrow">LA TUA SPESA, PIÙ SEMPLICE</div><h1>Organizza la spesa.<br><span>Taglia gli sprechi.</span></h1><p>Crea una lista, controlla cosa hai già in casa e condividila in un tocco.</p></div></section>
 
 
 <div class="layout">
@@ -203,11 +278,11 @@ body{background:radial-gradient(ellipse at 92% 0%,#e2edff 0,transparent 38%),var
 <div class="ingredient-head"><span>Ingrediente</span><span>Quantità</span><span>Unità</span><span></span></div>
 <div id="ingredient-rows"></div>
 <button class="addrow" onclick="addIngredient()"><i class="fa-solid fa-plus"></i> Aggiungi ingrediente</button>
-<div class="builderfoot"><div class="hint"><i class="fa-solid fa-circle-info"></i> La lista viene creata sul tuo dispositivo: puoi modificarla, stamparla o condividerla.</div><button class="primary" onclick="calculateList()">Crea lista della spesa <i class="fa-solid fa-arrow-right"></i></button></div>
+<div class="builderfoot"><div class="hint"><i class="fa-solid fa-circle-info"></i> La lista resta sul tuo dispositivo. Condividila o stampala quando è pronta.</div><button class="primary" onclick="calculateList()">Crea lista della spesa <i class="fa-solid fa-arrow-right"></i></button></div>
 </section>
 <aside class="sidecol">
 <div class="card sidecard"><div class="sectionhead" style="margin-bottom:8px"><div><h2 class="side-title">La mia dispensa</h2><p class="side-desc">Spunta ciò che hai già a casa: lo toglieremo dalla lista della spesa.</p></div><div class="step"><i class="fa-solid fa-box-open"></i></div></div><div class="pantry-preview" id="pantry-preview"></div><div class="pantry-add"><input id="pantry-new" placeholder="Aggiungi un ingrediente"><button class="smallbtn" onclick="addPantryItem()">Aggiungi</button></div><button class="secondary" style="width:100%;margin-top:12px" onclick="showPage('pantry')">Gestisci tutta la dispensa <i class="fa-solid fa-arrow-right"></i></button></div>
-<div class="advice"><i class="fa-solid fa-lightbulb"></i><strong>Un piccolo trucco anti-spreco</strong><p>Prima di fare la spesa, controlla cosa hai già in frigo e in dispensa. Anche pochi ingredienti possono fare la differenza.</p></div>
+<div class="card sidecard invite-card"><div class="invite-icon"><i class="fa-solid fa-user-group"></i></div><div><strong>Fai conoscere Fudgett</strong><p>Condividilo con chi fa la spesa insieme a te.</p></div><button class="secondary" onclick="shareApp()">Invita <i class="fa-solid fa-arrow-up-right-from-square"></i></button></div>
 </aside>
 </div>
 <section class="card results" id="results">
@@ -239,7 +314,7 @@ function savePantry(){localStorage.setItem(PANTRY_KEY,JSON.stringify(pantry));re
 function renderPantry(){["pantry-preview","pantry-full"].forEach(id=>{const root=document.getElementById(id);if(!root)return;root.innerHTML="";pantry.forEach((p,i)=>{const label=document.createElement("label");label.className="pantry-chip"+(p.owned?" active":"");label.innerHTML='<input type="checkbox" '+(p.owned?"checked":"")+' aria-label="'+esc(p.name)+' già in dispensa" onchange="togglePantry('+i+',this.checked)"><span>'+esc(p.name)+'</span>';root.appendChild(label);});if(!pantry.length)root.innerHTML='<span style="font-size:11px;color:var(--muted)">La dispensa è vuota. Aggiungi i tuoi ingredienti.</span>';});}
 function togglePantry(i,v){pantry[i].owned=v;localStorage.setItem(PANTRY_KEY,JSON.stringify(pantry));renderPantry();}
 function addPantryItem(full){const input=document.getElementById(full?"pantry-new-full":"pantry-new");const name=input.value.trim();if(!name)return;if(pantry.some(p=>p.name.toLowerCase()===name.toLowerCase())){toast("Questo ingrediente è già nella dispensa.");return;}pantry.push({name:name,owned:false});input.value="";savePantry();toast("Ingrediente aggiunto alla dispensa.");}
-function calculateList(){const dish=document.getElementById("dish-name").value.trim();const valid=ingredients.map(x=>({name:String(x.name||"").trim(),qty:Number(x.qty),unit:x.unit})).filter(x=>x.name&&Number.isFinite(x.qty)&&x.qty>0);if(!dish){toast("Dai un nome alla tua ricetta.");document.getElementById("dish-name").focus();return;}if(!valid.length){toast("Inserisci almeno un ingrediente con quantità valida.");return;}lastList=valid.map(x=>({...x,owned:pantry.some(p=>p.owned&&p.name.toLowerCase()===x.name.toLowerCase())}));document.getElementById("result-title").textContent=dish;document.getElementById("result-subtitle").textContent=valid.length+" ingredienti · "+lastList.filter(x=>!x.owned).length+" da acquistare";document.getElementById("result-summary").textContent="Ecco cosa ti serve. Gli ingredienti che hai già in dispensa sono esclusi dalla lista da acquistare. Il totale economico sarà disponibile quando collegheremo i listini reali dei supermercati.";const root=document.getElementById("result-list");root.innerHTML="";lastList.forEach(x=>{const el=document.createElement("div");el.className="result-item";el.innerHTML='<div class="check"><i class="fa-solid '+(x.owned?"fa-check":"fa-basket-shopping")+'"></i></div><div><strong>'+esc(x.name)+'</strong><small>'+(x.owned?"Già presente in dispensa":"Da acquistare")+'</small></div><span class="qty">'+esc(x.qty)+" "+(x.unit==="pezzi"?"pz":x.unit)+'</span>';root.appendChild(el);});document.getElementById("results").classList.add("show");document.getElementById("results").scrollIntoView({behavior:"smooth",block:"start"});}
+function calculateList(){const dish=document.getElementById("dish-name").value.trim();const valid=ingredients.map(x=>({name:String(x.name||"").trim(),qty:Number(x.qty),unit:x.unit})).filter(x=>x.name&&Number.isFinite(x.qty)&&x.qty>0);if(!dish){toast("Dai un nome alla tua ricetta.");document.getElementById("dish-name").focus();return;}if(!valid.length){toast("Inserisci almeno un ingrediente con quantità valida.");return;}lastList=valid.map(x=>({...x,owned:pantry.some(p=>p.owned&&p.name.toLowerCase()===x.name.toLowerCase())}));document.getElementById("result-title").textContent=dish;document.getElementById("result-subtitle").textContent=valid.length+" ingredienti · "+lastList.filter(x=>!x.owned).length+" da acquistare";document.getElementById("result-summary").textContent="Spunta gli articoli mentre fai la spesa. Quelli già in dispensa sono contrassegnati.";lastList=lastList.map(x=>({...x,done:!!x.owned}));renderResultList();document.getElementById("results").classList.add("show");document.getElementById("results").scrollIntoView({behavior:"smooth",block:"start"});}
 
 function shareWhatsApp(){if(!lastList.length){toast("Prepara prima la tua lista della spesa.");return;}const dish=document.getElementById("dish-name").value.trim();let msg="🛒 Lista della spesa — "+dish+"\n\n";lastList.forEach(x=>{msg+=(x.owned?"✅ ":"▫️ ")+x.name+" — "+x.qty+" "+(x.unit==="pezzi"?"pezzi":x.unit)+(x.owned?" (già in casa)":"")+"\n";});msg+="\nCreato con Fudgett";window.open("https://wa.me/?text="+encodeURIComponent(msg),"_blank","noopener");}
 function showPage(page){document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));const target=document.getElementById("page-"+page);if(target)target.classList.add("active");document.querySelectorAll(".navbtn").forEach(b=>b.classList.toggle("active",b.dataset.page===page));window.scrollTo({top:0,behavior:"smooth"});}
