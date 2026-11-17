@@ -320,7 +320,7 @@ const demoRecipes=[
 let currentDeals=[];
 function priceForRecipe(recipe,people,grams){
  const factor=people*(grams/recipe.grams);let food=0;
- const products=recipe.items.map(x=>{const cost=x[2]*(x[3]*factor)/(x[1].includes("ml")?750:x[1].includes("kg")?1000:x[1].includes("g")?parseFloat(x[1]):1);food+=cost;return {name:x[0],pack:x[1],price:x[2],used:x[3]*factor,cost};});
+ const products=recipe.items.map(x=>{const multi=x[1].match(/(\d+(?:[.,]\d+)?)\s*x\s*(\d+(?:[.,]\d+)?)\s*(g|ml)/i);const simple=x[1].match(/(\d+(?:[.,]\d+)?)\s*(kg|g|ml)/i);const packQty=multi?Number(multi[1].replace(",","."))*Number(multi[2].replace(",",".")):simple?Number(simple[1].replace(",","."))*(simple[2].toLowerCase()==="kg"?1000:1):1;const cost=x[2]*(x[3]*factor)/packQty;food+=cost;return {name:x[0],pack:x[1],price:x[2],used:x[3]*factor,cost};});
  return {products,food,energy:recipe.energy*people*(grams/recipe.grams),total:food+recipe.energy*people*(grams/recipe.grams)};
 }
 function findDishes(){
